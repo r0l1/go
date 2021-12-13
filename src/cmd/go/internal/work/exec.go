@@ -2987,8 +2987,9 @@ func (b *Builder) cgo(a *Action, cgoExe, objdir string, pcCFLAGS, pcLDFLAGS, cgo
 
 // gccConcurrency returns the concurrency level for spawning gcc processes.
 func gccConcurrency(a *Action) int {
-	gcflags := str.StringList(forcedGcflags, a.Package.Internal.Gcflags)
-	return gcBackendConcurrency(gcflags)
+	//gcflags := str.StringList(forcedGcflags, a.Package.Internal.Gcflags)
+	//return gcBackendConcurrency(gcflags)
+	return runtime.NumCPU()
 }
 
 func runJobDispatcher(nparallel int, jobCh <-chan func() error) error {
